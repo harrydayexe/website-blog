@@ -1,0 +1,42 @@
+// Media Query Mixins
+$small-width: 576px; // Phone
+$medium-width: 768px; // Tablet
+$large-width: 1024px; // Desktop
+
+// Media Breakpoint Up
+// sm | md | lg
+@mixin media-breakpoint-up($breakpoint) {
+    @if $breakpoint == sm {
+        @media (min-width: $small-width) {
+            @content;
+        }
+    } @else 
+    if $breakpoint == md {
+        @media (min-width: $medium-width) {
+            @content;
+        }
+    } @else {
+        @media (min-width: $large-width) {
+            @content;
+        }
+    }
+}
+
+// Media Breakpoint Down
+// sm | md | lg
+@mixin media-breakpoint-down($breakpoint) {
+    @if $breakpoint == sm {
+        @media (max-width: $small-width) {
+            @content;
+        }
+    } @else 
+    if $breakpoint == md {
+        @media (max-width: $medium-width) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $large-width) {
+            @content;
+        }
+    }
+}
