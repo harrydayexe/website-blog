@@ -22,4 +22,4 @@ struct Temp: Website {
 }
 
 // This will generate your website using the built-in Foundation theme:
-try Temp().publish(withTheme: .foundation)
+try Temp().publish(withTheme: .hdCustom)
