@@ -32,23 +32,21 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
             .lang(context.site.language),
             .head(for: index, on: context.site),
             .body {
-                SiteHeader(context: context, selectedSelectionID: nil)
-                SiteHeroText(context: context, selectedSelectionID: nil)
+                SiteHeader()
+                SiteHeroText()
                 
-//                Wrapper {
-//                    H1(index.title)
-//                    Paragraph(context.site.description)
-//                        .class("description")
-//                    H2("Latest content")
-//                    ItemList(
-//                        items: context.allItems(
-//                            sortedBy: \.date,
-//                            order: .descending
-//                        ),
-//                        site: context.site
-//                    )
+//                AlternateColourSection {
+//
 //                }
-//                SiteFooter()
+                
+                ArticlePreviewList(
+                    items: context.allItems(
+                        sortedBy: \.date,
+                        order: .descending
+                    ),
+                    site: context.site
+                )
+                SiteFooter()
             }
         )
     }
@@ -59,10 +57,11 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
             .lang(context.site.language),
             .head(for: section, on: context.site),
             .body {
-                SiteHeader(context: context, selectedSelectionID: section.id)
+                SiteHeader()
+                SiteHeroText()
                 Wrapper {
                     H1(section.title)
-                    ItemList(items: section.items, site: context.site)
+                    ArticlePreviewList(items: section.items, site: context.site)
                 }
                 SiteFooter()
             }
@@ -77,7 +76,7 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
             .body(
                 .class("item-page"),
                 .components {
-                    SiteHeader(context: context, selectedSelectionID: item.sectionID)
+                    SiteHeader()
                     Wrapper {
                         Article {
                             Div(item.content.body).class("content")
@@ -97,7 +96,7 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                SiteHeader(context: context, selectedSelectionID: nil)
+                SiteHeader()
                 Wrapper(page.body)
                 SiteFooter()
             }
@@ -110,7 +109,7 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                SiteHeader(context: context, selectedSelectionID: nil)
+                SiteHeader()
                 Wrapper {
                     H1("Browse all tags")
                     List(page.tags.sorted()) { tag in
@@ -134,7 +133,7 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
             .lang(context.site.language),
             .head(for: page, on: context.site),
             .body {
-                SiteHeader(context: context, selectedSelectionID: nil)
+                SiteHeader()
                 Wrapper {
                     H1 {
                         Text("Tagged with ")
@@ -146,7 +145,7 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
                     )
                     .class("browse-all")
                     
-                    ItemList(
+                    ArticlePreviewList(
                         items: context.items(
                             taggedWith: page.tag,
                             sortedBy: \.date,
@@ -169,10 +168,8 @@ private struct Wrapper: ComponentContainer {
     }
 }
 
-private struct SiteHeader<Site: Website>: Component {
-    var context: PublishingContext<Site>
-    var selectedSelectionID: Site.SectionID?
-    
+
+private struct SiteHeader: Component {
     var body: Component {
         Header {
             Div {
@@ -188,10 +185,7 @@ private struct SiteHeader<Site: Website>: Component {
     }
 }
 
-private struct SiteHeroText<Site: Website>: Component {
-    var context: PublishingContext<Site>
-    var selectedSelectionID: Site.SectionID?
-    
+private struct SiteHeroText: Component {
     var body: Component {
         Wrapper {
             H2("Computer Science Undergraduate")
@@ -223,17 +217,29 @@ private struct SiteHeroText<Site: Website>: Component {
     }
 }
 
-private struct ItemList<Site: Website>: Component {
+private struct AlternateColourSection: ComponentContainer {
+    @ComponentBuilder var content: ContentProvider
+    
+    var body: Component {
+        Article {
+            Div(content: content).class("section-inner wrapper")
+        }.class("section")
+    }
+}
+
+private struct ArticlePreviewList<Site: Website>: Component {
     var items: [Item<Site>]
     var site: Site
     
     var body: Component {
         List(items) { item in
-            Article {
-                H1(Link(item.title, url: item.path.absoluteString))
-                ItemTagList(item: item, site: site)
+            AlternateColourSection {
+                Div {
+                    H2(Link(item.title, url: item.path.absoluteString))
+                }.class("section-header")
+                
                 Paragraph(item.description)
-            }
+            }.class("section")
         }
         .class("item-list")
     }
@@ -254,13 +260,20 @@ private struct ItemTagList<Site: Website>: Component {
 private struct SiteFooter: Component {
     var body: Component {
         Footer {
-            Paragraph {
-                Text("Generated using ")
-                Link("Publish", url: "https://github.com/johnsundell/publish")
-            }
-            Paragraph {
-                Link("RSS feed", url: "/feed.rss")
-            }
+            Div {
+                Link("GitHub", url: "https://github.com/harrydayexe").environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+                Link("LinkedIn", url: "https://linkedin.com/in/harrydayexe").environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+                Link("Twitter", url: "https://twitter.com/harrydayexe").environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+                Link("Contact", url: "mailto:contact@harryday.xyz").environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+            }.class("footerContact")
+            
+            Node.br()
+            
+            Div {
+                Link("Blog", url: "https://harryday.xyz/blog/").environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+                Link("SongLinkr", url: "https://songlinkr.harryday.xyz").environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+                Link("Gentle Ghosts", url: "https://github.com/Gentle-Ghosts/images").environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+            }.class("footerProjects")
         }
     }
 }
