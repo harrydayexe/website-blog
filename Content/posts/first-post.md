@@ -1,8 +1,8 @@
 ---
-date: 2022-08-08 8:37 pm
-description: A description of my first post.
-tags: first, article
+date: 2022-08-24 12:04 am
+description: A description of my second post.
+tags: second, article
 ---
-# My first post
+# My second post
 
-My first post's text.
+My second post's text.

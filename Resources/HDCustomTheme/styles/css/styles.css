@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.5s ease;
 }
 
 ::-moz-selection {
@@ -58,6 +57,9 @@ h4 {
 a {
   text-decoration: none;
   color: #FF9400;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 @media (min-width: 768px) {
@@ -172,8 +174,12 @@ header .header-icon img {
     padding-bottom: 25px;
   }
 }
+.section .section-inner .section-header a {
+  color: black;
+}
 .section .section-inner .section-header .section-img {
   display: block;
+  padding-right: 20px;
   width: 75px;
   height: 75px;
 }
@@ -186,9 +192,6 @@ header .header-icon img {
     width: 125px;
     height: 125px;
   }
-}
-.section .section-inner .section-header .section-title {
-  padding-left: 20px;
 }
 .section .section-inner .section-header .section-title p {
   color: #7F7F82;
@@ -273,11 +276,15 @@ header .header-icon img {
   border: 5px solid #FF9400;
   border-radius: 25px;
 }
+.button.styled a {
+  text-decoration: none;
+}
 .button.styled p:hover {
   color: #FFF;
   transition: all 0.2s;
 }
 .button.styled:hover {
+  text-decoration: none;
   background-color: #FF9400;
   transition: all 0.2s;
   color: #FFF;
@@ -328,11 +335,7 @@ footer {
 }
 footer a {
   color: #A9A9A9;
-  text-decoration: none;
   font-weight: 500;
-}
-footer a:hover {
-  text-decoration: underline;
 }
 @media (max-width: 576px) {
   footer a {

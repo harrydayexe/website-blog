@@ -3,11 +3,10 @@ import Publish
 import Plot
 
 // This type acts as the configuration for your website.
-struct Temp: Website {
+struct HarryDay: Website {
     enum SectionID: String, WebsiteSectionID {
         // Add the sections that you want your website to contain here:
         case posts
-        case podcasts
     }
 
     struct ItemMetadata: WebsiteItemMetadata {
@@ -23,4 +22,11 @@ struct Temp: Website {
 }
 
 // This will generate your website using the built-in Foundation theme:
-try Temp().publish(withTheme: .hdCustom)
+try HarryDay().publish(withTheme: .hdCustom, additionalSteps: [
+    .step(named: "Use Custom DateFormatter") { context in
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("MMMMdEEEE")
+        context.dateFormatter = formatter
+    }
+])
+

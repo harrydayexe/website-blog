@@ -128,7 +128,8 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
                 SiteHeader()
                 SiteHeroText()
                 
-                ArticlePreviewList(items: section.items, site: context.site)
+                ComponentGroup(members: section.items.map( {ArticleColourSection(item: $0, context: context)} ))
+                
                 SiteFooter()
             }
         )
@@ -211,14 +212,15 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
                     )
                     .class("browse-all")
                     
-                    ArticlePreviewList(
-                        items: context.items(
-                            taggedWith: page.tag,
-                            sortedBy: \.date,
-                            order: .descending
-                        ),
-                        site: context.site
-                    )
+//                    ArticlePreviewList(
+//                        items: context.items(
+//                            taggedWith: page.tag,
+//                            sortedBy: \.date,
+//                            order: .descending
+//                        ),
+//                        site: context.site,
+//                        context: context
+//                    )
                 }
                 SiteFooter()
             }
@@ -240,7 +242,9 @@ private struct SiteHeader: Component {
     var body: Component {
         Header {
             Div {
-                Image(url: "/assets/images/memoji.png", description: "Harry Day as a Memoji")
+                Link(url: "/") {
+                    Image(url: "/assets/images/memoji.png", description: "Harry Day as a Memoji")
+                }
             }.class("header-icon")
             
             
@@ -281,31 +285,23 @@ private struct SiteHeroText: Component {
     }
 }
 
-private struct ArticleColourSection: ComponentContainer {
-    @ComponentBuilder var content: ContentProvider
+private struct ArticleColourSection<Site: Website>: Component {
+    var item: Item<Site>
+    var context: PublishingContext<Site>
     
     var body: Component {
         Article {
-            Div(content: content).class("section-inner wrapper")
-        }.class("section")
-    }
-}
-
-private struct ArticlePreviewList<Site: Website>: Component {
-    var items: [Item<Site>]
-    var site: Site
-    
-    var body: Component {
-        List(items) { item in
-            ArticleColourSection {
+            Div {
                 Div {
-                    H2(Link(item.title, url: item.path.absoluteString))
+                    Div {
+                        H2(Link(item.title, url: item.path.absoluteString))
+                        Paragraph(context.dateFormatter.string(from: item.date))
+                    }.class("section-title")
                 }.class("section-header")
                 
                 Paragraph(item.description)
-            }.class("section")
-        }
-        .class("item-list")
+            }.class("section-inner wrapper")
+        }.class("section")
     }
 }
 
