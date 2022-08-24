@@ -351,63 +351,73 @@ footer {
         @include fontstack.fontstack;
     }
 
+    h2 {}
+
+    p {}
+
     ul {
         list-style-position: inside;
     }
-}
 
-pre {
-    margin-bottom: 1.5em;
-    background-color: #1a1a1a;
-    padding: 16px 0;
-    border-radius: 16px;
-}
+    pre {
+        margin-bottom: 1.5em;
+        background-color: #1a1a1a;
+        padding: 16px 0;
+        border-radius: 16px;
 
-pre code {
-    @include fontstack.mono-fontstack;
-    display: block;
-    padding: 0 20px;
-    color: #a9bcbc;
-    line-height: 1.4em;
-    font-size: 0.95em;
-    font-weight: 500;
-    overflow-x: auto;
-    white-space: pre;
-    -webkit-overflow-scrolling: touch;
-}
+        code {
+            @include fontstack.mono-fontstack;
+            display: block;
+            padding: 0 20px;
+            color: #a9bcbc;
+            line-height: 1.4em;
+            font-size: 0.95em;
+            font-weight: 500;
+            overflow-x: auto;
+            white-space: pre;
+            -webkit-overflow-scrolling: touch;
 
-pre code .splashClasskeyword {
-    color: #e73289;
-}
+            span {
+                // Direct rule so doesn't inherit from *
+                @include fontstack.mono-fontstack;
+            }
 
-pre code .splashClasstype {
-    color: #8281ca;
-}
+            // Colour rules
+            .splashClasskeyword {
+                color: #e73289;
+            }
 
-pre code .splashClasscall {
-    color: #348fe5;
-}
+            .splashClasstype {
+                color: #8281ca;
+            }
 
-pre code .splashClassproperty {
-    color: #21ab9d;
-}
+            .splashClasscall {
+                color: #348fe5;
+            }
 
-pre code .splashClassnumber {
-    color: #db6f57;
-}
+            .splashClassproperty {
+                color: #21ab9d;
+            }
 
-pre code .splashClassstring {
-    color: #fa641e;
-}
+            .splashClassnumber {
+                color: #db6f57;
+            }
 
-pre code .splashClasscomment {
-    color: #6b8a94;
-}
+            .splashClassstring {
+                color: #fa641e;
+            }
 
-pre code .splashClassdotAccess {
-    color: #92b300;
-}
+            .splashClasscomment {
+                color: #6b8a94;
+            }
 
-pre code .splashClasspreprocessing {
-    color: #b68a00;
+            .splashClassdotAccess {
+                color: #92b300;
+            }
+
+            .splashClasspreprocessing {
+                color: #b68a00;
+            }
+        }
+    }
 }

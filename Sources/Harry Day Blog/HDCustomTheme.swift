@@ -143,7 +143,12 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
             .body {
                 SiteHeader()
                 
-                Article(item.content.body).class("wrapper full-article")
+                
+                Article {
+                    Link("← Back to posts", url: "/posts#\(item.path.string)").class("back-button")
+                    Div(item.content.body).class("full-article")
+                }
+                .class("wrapper")
                 
                 SiteFooter()
             }
@@ -165,59 +170,12 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
     
     func makeTagListHTML(for page: TagListPage,
                          context: PublishingContext<Site>) throws -> HTML? {
-        HTML(
-            .lang(context.site.language),
-            .head(for: page, on: context.site),
-            .body {
-                SiteHeader()
-                Wrapper {
-                    H1("Browse all tags")
-                    List(page.tags.sorted()) { tag in
-                        ListItem {
-                            Link(tag.string,
-                                 url: context.site.path(for: tag).absoluteString
-                            )
-                        }
-                        .class("tag")
-                    }
-                    .class("all-tags")
-                }
-                SiteFooter()
-            }
-        )
+        return nil
     }
     
     func makeTagDetailsHTML(for page: TagDetailsPage,
                             context: PublishingContext<Site>) throws -> HTML? {
-        HTML(
-            .lang(context.site.language),
-            .head(for: page, on: context.site),
-            .body {
-                SiteHeader()
-                Wrapper {
-                    H1 {
-                        Text("Tagged with ")
-                        Span(page.tag.string).class("tag")
-                    }
-                    
-                    Link("Browse all tags",
-                         url: context.site.tagListPath.absoluteString
-                    )
-                    .class("browse-all")
-                    
-//                    ArticlePreviewList(
-//                        items: context.items(
-//                            taggedWith: page.tag,
-//                            sortedBy: \.date,
-//                            order: .descending
-//                        ),
-//                        site: context.site,
-//                        context: context
-//                    )
-                }
-                SiteFooter()
-            }
-        )
+        return nil
     }
 }
 
@@ -258,7 +216,7 @@ private struct SiteHeroText: Component {
             Div {
                 Div {
                     Link(url: "/posts/") {
-                        Paragraph("Blog")
+                        Paragraph("Posts")
                     }
                 }.class("contact button styled")
                 
@@ -284,6 +242,8 @@ private struct ArticleColourSection<Site: Website>: Component {
     
     var body: Component {
         Article {
+            Link(item.path.string)
+            
             Div {
                 Div {
                     Div {
@@ -323,6 +283,6 @@ private struct SiteFooter: Component {
 
 extension Component {
     func openInNewTab() -> Component {
-        return self.environmentValue(.noopener, key: .linkRelationship).environmentValue(.noreferrer, key: .linkRelationship).environmentValue(.blank, key: .linkTarget)
+        return self.linkTarget(.blank).linkRelationship(.noopener).linkRelationship(.noreferrer)
     }
 }
