@@ -12,8 +12,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "Publish", url: "https://github.com/johnsundell/publish.git", from: "0.9.0"),
-//        .package(name: "Publish", url: "https://github.com/harrydayexe/publish.git", from: "0.9.0"),
+//        .package(name: "Publish", url: "https://github.com/johnsundell/publish.git", from: "0.9.0"),
+        .package(name: "Publish", url: "https://github.com/harrydayexe/publish.git", from: "0.9.1"),
 //        .package(path: "~/Developer/Publish"),
     ],
     targets: [
