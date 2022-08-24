@@ -26,24 +26,36 @@ struct HarryDay: Website {
 }
 
 // This will generate your website using the built-in Foundation theme:
-try HarryDay().publish(withTheme: .hdCustom, additionalSteps: [
-    .step(named: "Use Custom DateFormatter") { context in
-        let formatter = DateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("MMMMdEEEE")
-        context.dateFormatter = formatter
-    },
-    .step(named: "Default section titles") { context in
-        context.mutateAllSections { section in
-            guard section.title.isEmpty else { return }
-            
-            switch section.id {
-                case .posts:
-                    section.title = "Posts"
+try HarryDay().publish(
+    using: [
+        .installPlugin(.splash(withClassPrefix: "splashClass")),
+        .addMarkdownFiles(),
+        .sortItems(by: \.date, order: .descending),
+        .step(named: "Use Custom DateFormatter") { context in
+            let formatter = DateFormatter()
+            formatter.setLocalizedDateFormatFromTemplate("MMMMdEEEE")
+            context.dateFormatter = formatter
+        },
+        .step(named: "Default section titles") { context in
+            context.mutateAllSections { section in
+                guard section.title.isEmpty else { return }
+                
+                switch section.id {
+                    case .posts:
+                        section.title = "Posts"
+                }
             }
-        }
-    },
-    .copyFiles(at: "Content/images", includingFolder: true)
-], plugins: [
-    .splash(withClassPrefix: "splashClass")
-])
-
+        },
+        .copyFiles(at: "Content/images", includingFolder: true),
+        .copyFiles(at: "Resources/assets/", includingFolder: true),
+        .generateHTML(withTheme: .hdCustom),
+        .unwrap(.default) { config in
+                .generateRSSFeed(
+                    including: Set(HarryDay.SectionID.allCases),
+                    config: config
+                )
+        },
+        .generateSiteMap()
+    ],
+    file: #file
+)
