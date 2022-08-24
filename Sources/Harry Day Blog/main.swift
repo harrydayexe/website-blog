@@ -1,6 +1,7 @@
 import Foundation
 import Publish
 import Plot
+import SplashPublishPlugin
 
 // This type acts as the configuration for your website.
 struct HarryDay: Website {
@@ -40,6 +41,9 @@ try HarryDay().publish(withTheme: .hdCustom, additionalSteps: [
                     section.title = "Posts"
             }
         }
-    }
+    },
+    .copyFiles(at: "Content/images", includingFolder: true)
+], plugins: [
+    .splash(withClassPrefix: "splashClass")
 ])
 

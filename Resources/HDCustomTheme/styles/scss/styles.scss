@@ -2,13 +2,15 @@
 @use 'colours';
 @use 'flexbox';
 @use 'mediaQuery';
+@use 'fontstack';
 
 // Reset Margins, Padding, use border box sizing and transition
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-//    transition: all 0.5s ease;
+    //    transition: all 0.5s ease;
+    @include fontstack.fontstack;
 }
 
 // Selection colour for mouse drag
@@ -24,7 +26,6 @@
 
 // Use Default System Font
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     margin: auto;
 }
@@ -32,11 +33,12 @@ body {
 // Title Size
 h1 {
     font-size: 3rem;
-    font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    @include fontstack.mono-fontstack;
     font-weight: 700;
 
     span {
         color: colours.$mainAccent;
+        @include fontstack.mono-fontstack;
     }
 
     @include mediaQuery.media-breakpoint-up(md) {
@@ -65,7 +67,7 @@ h4 {
 a {
     text-decoration: none;
     color: colours.$mainAccent;
-    
+
     &:hover {
         text-decoration: underline;
     }
@@ -158,14 +160,14 @@ header {
             @include flexbox.flex-direction();
             @include flexbox.align-items(center);
             @include flexbox.justify-content();
-            
+
             a {
                 color: black;
             }
 
             .section-img {
                 display: block;
-                
+
                 padding-right: 20px;
 
                 img {
@@ -245,7 +247,7 @@ header {
 .button.styled {
     border: 5px solid colours.$mainAccent;
     border-radius: 25px;
-    
+
     a {
         text-decoration: none;
     }
@@ -283,7 +285,7 @@ header {
         font-weight: bold;
         top: 1em;
         display: block;
-        font-family: 'Roboto', sans-serif;
+        @include fontstack.fontstack;
         font-weight: 700;
         font-size: 0.785rem;
     }
@@ -342,4 +344,70 @@ footer {
         color: colours.$lightGrey;
         line-height: 2;
     }
+}
+
+.full-article {
+    h1 {
+        @include fontstack.fontstack;
+    }
+
+    ul {
+        list-style-position: inside;
+    }
+}
+
+pre {
+    margin-bottom: 1.5em;
+    background-color: #1a1a1a;
+    padding: 16px 0;
+    border-radius: 16px;
+}
+
+pre code {
+    @include fontstack.mono-fontstack;
+    display: block;
+    padding: 0 20px;
+    color: #a9bcbc;
+    line-height: 1.4em;
+    font-size: 0.95em;
+    font-weight: 500;
+    overflow-x: auto;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+}
+
+pre code .splashClasskeyword {
+    color: #e73289;
+}
+
+pre code .splashClasstype {
+    color: #8281ca;
+}
+
+pre code .splashClasscall {
+    color: #348fe5;
+}
+
+pre code .splashClassproperty {
+    color: #21ab9d;
+}
+
+pre code .splashClassnumber {
+    color: #db6f57;
+}
+
+pre code .splashClassstring {
+    color: #fa641e;
+}
+
+pre code .splashClasscomment {
+    color: #6b8a94;
+}
+
+pre code .splashClassdotAccess {
+    color: #92b300;
+}
+
+pre code .splashClasspreprocessing {
+    color: #b68a00;
 }

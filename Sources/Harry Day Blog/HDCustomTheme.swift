@@ -140,20 +140,13 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
         HTML(
             .lang(context.site.language),
             .head(for: item, on: context.site),
-            .body(
-                .class("item-page"),
-                .components {
-                    SiteHeader()
-                    Wrapper {
-                        Article {
-                            Div(item.content.body).class("content")
-                            Span("Tagged with: ")
-                            ItemTagList(item: item, site: context.site)
-                        }
-                    }
-                    SiteFooter()
-                }
-            )
+            .body {
+                SiteHeader()
+                
+                Article(item.content.body).class("wrapper full-article")
+                
+                SiteFooter()
+            }
         )
     }
     
@@ -302,18 +295,6 @@ private struct ArticleColourSection<Site: Website>: Component {
                 Paragraph(item.description)
             }.class("section-inner wrapper")
         }.class("section")
-    }
-}
-
-private struct ItemTagList<Site: Website>: Component {
-    var item: Item<Site>
-    var site: Site
-    
-    var body: Component {
-        List(item.tags) { tag in
-            Link(tag.string, url: site.path(for: tag).absoluteString)
-        }
-        .class("tag-list")
     }
 }
 
