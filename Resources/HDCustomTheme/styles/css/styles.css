@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 ::-moz-selection {
@@ -15,7 +16,6 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   margin: auto;
 }
@@ -27,6 +27,7 @@ h1 {
 }
 h1 span {
   color: #FF9400;
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 }
 @media (min-width: 768px) {
   h1 {
@@ -63,7 +64,9 @@ a:hover {
 }
 
 @media (min-width: 768px) {
-  p {
+  li,
+p,
+ul {
     font-size: 1.2rem;
   }
 }
@@ -206,7 +209,12 @@ header .header-icon img {
 .wrapper {
   max-width: 900px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 40px 20px;
+  }
 }
 
 .section-buttons {
@@ -308,7 +316,7 @@ header .header-icon img {
   font-weight: bold;
   top: 1em;
   display: block;
-  font-family: "Roboto", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 0.785rem;
 }
@@ -361,8 +369,96 @@ footer h5 {
   line-height: 2;
 }
 
-.full-article h1 {
-  color: blue;
+.full-article .article-header {
+  padding-bottom: 1%;
+}
+.full-article .article-header time {
+  color: #7F7F82;
+  font-size: 1.1rem;
+}
+@media (min-width: 768px) {
+  .full-article .article-header time {
+    font-size: 1.4rem;
+  }
+}
+.full-article h2,
+.full-article h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.full-article h2 {
+  font-size: 2rem;
+}
+@media (min-width: 768px) {
+  .full-article h2 {
+    font-size: 2.2rem;
+  }
+}
+.full-article h3 {
+  font-size: 1.5rem;
+}
+@media (min-width: 768px) {
+  .full-article h3 {
+    font-size: 1.7rem;
+  }
+}
+.full-article img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.full-article ul {
+  list-style-position: inside;
+}
+.full-article pre {
+  margin-bottom: 1.5em;
+  background-color: #1a1a1a;
+  padding: 16px 0;
+  border-radius: 16px;
+}
+.full-article pre code {
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  display: block;
+  padding: 0 20px;
+  color: #a9bcbc;
+  line-height: 1.4em;
+  font-size: 0.95em;
+  font-weight: 500;
+  overflow-x: auto;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+}
+.full-article pre code span {
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+}
+.full-article pre code .splashClasskeyword {
+  color: #e73289;
+}
+.full-article pre code .splashClasstype {
+  color: #8281ca;
+}
+.full-article pre code .splashClasscall {
+  color: #348fe5;
+}
+.full-article pre code .splashClassproperty {
+  color: #21ab9d;
+}
+.full-article pre code .splashClassnumber {
+  color: #db6f57;
+}
+.full-article pre code .splashClassstring {
+  color: #fa641e;
+}
+.full-article pre code .splashClasscomment {
+  color: #6b8a94;
+}
+.full-article pre code .splashClassdotAccess {
+  color: #92b300;
+}
+.full-article pre code .splashClasspreprocessing {
+  color: #b68a00;
 }
 
 /*# sourceMappingURL=styles.css.map */
