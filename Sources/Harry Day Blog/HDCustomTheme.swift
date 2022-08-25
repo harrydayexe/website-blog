@@ -146,7 +146,15 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
                 
                 Article {
                     Link("← Back to posts", url: "/posts#\(item.path.string)").class("back-button")
-                    Div(item.content.body).class("full-article")
+                    Div {
+                        Div {
+                            H2(item.title)
+                            Time(datetime: item.date) {
+                                Text(context.dateFormatter.string(from: item.date))
+                            }
+                        }.class("article-header")
+                        item.content.body.body
+                    }.class("full-article")
                 }
                 .class("wrapper")
                 
