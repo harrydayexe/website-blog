@@ -280,6 +280,7 @@ private struct SiteFooter: Component {
             
             Div {
                 Link("Blog", url: "/posts/")
+                Link("RSS", url: "/feed.rss")
                 Link("SongLinkr", url: "https://songlinkr.harryday.xyz").openInNewTab()
                 Link("Gentle Ghosts", url: "https://github.com/Gentle-Ghosts/images").openInNewTab()
             }.class("footerProjects")
