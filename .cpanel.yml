@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/harrqynk/public_html/
-    - /bin/cp -R Output/. $DEPLOYPATH
+    - /bin/cp -R Output/* $DEPLOYPATH
