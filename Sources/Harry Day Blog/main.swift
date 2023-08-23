@@ -48,6 +48,7 @@ try HarryDay().publish(
         },
         .copyFiles(at: "Content/images", includingFolder: true),
         .copyFiles(at: "Resources/assets/", includingFolder: true),
+        .copyFile(at: ".cpanel.yml"),
         .generateHTML(withTheme: .hdCustom),
         .unwrap(.default) { config in
                 .generateRSSFeed(
@@ -55,7 +56,8 @@ try HarryDay().publish(
                     config: config
                 )
         },
-        .generateSiteMap()
+        .generateSiteMap(),
+        .deploy(using: .gitHub("harrydayexe/website-output", useSSH: false))
     ],
     file: #file
 )
