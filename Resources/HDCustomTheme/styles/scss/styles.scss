@@ -390,6 +390,19 @@ footer {
         }
     }
 
+    li,
+    p,
+    ul {
+        line-height: 1.6rem;
+        margin-bottom: 1.6rem;
+
+        @include mediaQuery.media-breakpoint-up(md) {
+            font-size: 1.2rem;
+            line-height: 2rem;
+            margin-bottom: 2rem;
+        }
+    }
+
     img {
         display: block;
         margin-left: auto;

@@ -65,8 +65,8 @@ a:hover {
 
 @media (min-width: 768px) {
   li,
-p,
-ul {
+  p,
+  ul {
     font-size: 1.2rem;
   }
 }
@@ -263,7 +263,7 @@ header .header-icon img {
 }
 @media (min-width: 768px) {
   .button img,
-.button p {
+  .button p {
     width: 200px;
     max-height: 67px;
   }
@@ -402,6 +402,21 @@ footer h5 {
 @media (min-width: 768px) {
   .full-article h3 {
     font-size: 1.7rem;
+  }
+}
+.full-article li,
+.full-article p,
+.full-article ul {
+  line-height: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+@media (min-width: 768px) {
+  .full-article li,
+  .full-article p,
+  .full-article ul {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin-bottom: 2rem;
   }
 }
 .full-article img {
