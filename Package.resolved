@@ -39,20 +39,20 @@
       },
       {
         "package": "Plot",
-        "repositoryURL": "https://github.com/harrydayexe/plot.git",
+        "repositoryURL": "https://github.com/johnsundell/plot.git",
         "state": {
           "branch": null,
-          "revision": "a59962f31a78abc779939d7239f505813707d81b",
-          "version": "0.9.4"
+          "revision": "271926b4413fe868739d99f5eadcf2bd6cd62fb8",
+          "version": "0.14.0"
         }
       },
       {
         "package": "Publish",
-        "repositoryURL": "https://github.com/harrydayexe/publish.git",
+        "repositoryURL": "https://github.com/johnsundell/publish.git",
         "state": {
           "branch": null,
-          "revision": "47e8b1609f0f70b3115468cedd1d79dbf388e654",
-          "version": "0.9.1"
+          "revision": "1c8ad00d39c985cb5d497153241a2f1b654e0d40",
+          "version": "0.9.0"
         }
       },
       {
