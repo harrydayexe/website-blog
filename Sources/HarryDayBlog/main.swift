@@ -57,7 +57,7 @@ try HarryDay().publish(
                 )
         },
         .generateSiteMap(),
-        .deploy(using: .gitHub("harrydayexe/website-output", useSSH: false))
+        .deploy(using: .gitHub("harrydayexe/website-output"))
     ],
     file: #file
 )
