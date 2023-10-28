@@ -149,7 +149,7 @@ private struct HDCustomHTMLFactory<Site: Website>: HTMLFactory {
                     Div {
                         Div {
                             H2(item.title)
-                            Time(datetime: item.date) {
+                            Time(datetime: DateFormatter.ISOstring(from: item.date)) {
                                 Text(context.dateFormatter.string(from: item.date))
                             }
                         }.class("article-header")
@@ -250,7 +250,7 @@ private struct ArticleColourSection<Site: Website>: Component {
     
     var body: Component {
         Article {
-            Link(item.path.string)
+//            Link(item.path.string)
             
             Div {
                 Div {
@@ -293,5 +293,18 @@ private struct SiteFooter: Component {
 extension Component {
     func openInNewTab() -> Component {
         return self.linkTarget(.blank).linkRelationship(.noopener).linkRelationship(.noreferrer)
+    }
+}
+
+internal extension DateFormatter {
+    /// Convert a date object into a RF361 compliant datetime string.
+    /// - parameter date: The date object to convert to a string.
+    static func ISOstring(from date: Date) -> String {
+        let df = DateFormatter()
+        df.locale = Locale(identifier: "en_US_POSIX")
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        df.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        return df.string(from: date)
     }
 }
