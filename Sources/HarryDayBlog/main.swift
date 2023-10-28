@@ -46,7 +46,7 @@ try HarryDay().publish(
                 }
             }
         },
-        .copyFiles(at: "Content/images", includingFolder: true),
+        //.copyFiles(at: "Content/images", includingFolder: true),
         .copyFiles(at: "Resources/assets/", includingFolder: true),
         .copyFile(at: ".cpanel.yml"),
         .generateHTML(withTheme: .hdCustom),
