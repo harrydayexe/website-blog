@@ -22,7 +22,7 @@ jobs:
     - name: Deploy
       run: swift run HarryDayBlog --deploy
     - name: List Files
-      run: ls -la
+      run: ls -la Output/
     - name: Archive Output
       uses: actions/upload-artifact@v3
       with:
