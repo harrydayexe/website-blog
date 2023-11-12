@@ -19,10 +19,10 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: Build
       run: swift build
+    - name: Generate
+      run: swift run HarryDayBlog
     - name: Deploy
       run: swift run HarryDayBlog --deploy
-    - name: List Files
-      run: ls -la Output/
     - name: Archive Output
       uses: actions/upload-artifact@v3
       with:
