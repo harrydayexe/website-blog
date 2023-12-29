@@ -474,4 +474,15 @@ footer {
             }
         }
     }
+
+    blockquote {
+        border-left: 3px solid colours.$mainAccent;
+        margin: 1.5em 10px;
+        padding: 0.5em 10px;
+
+        p {
+            display: inline-block;
+            margin: 0;
+        }
+    }
 }
