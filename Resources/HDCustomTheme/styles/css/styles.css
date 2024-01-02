@@ -406,14 +406,16 @@ footer h5 {
 }
 .full-article li,
 .full-article p,
-.full-article ul {
+.full-article ul,
+.full-article ol {
   line-height: 1.6rem;
   margin-bottom: 1.6rem;
 }
 @media (min-width: 768px) {
   .full-article li,
   .full-article p,
-  .full-article ul {
+  .full-article ul,
+  .full-article ol {
     font-size: 1.2rem;
     line-height: 2rem;
     margin-bottom: 2rem;
@@ -424,7 +426,7 @@ footer h5 {
   margin-left: auto;
   margin-right: auto;
 }
-.full-article ul {
+.full-article ul, .full-article ol {
   list-style-position: inside;
 }
 .full-article pre {

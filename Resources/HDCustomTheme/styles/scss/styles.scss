@@ -392,7 +392,8 @@ footer {
 
     li,
     p,
-    ul {
+    ul,
+    ol {
         line-height: 1.6rem;
         margin-bottom: 1.6rem;
 
@@ -409,7 +410,7 @@ footer {
         margin-right: auto;
     }
 
-    ul {
+    ul, ol {
         list-style-position: inside;
     }
 
