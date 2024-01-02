@@ -53,6 +53,7 @@ if prs {
 ```
 
 I think that for 2024, my focus will be split across a few main areas:
+
 1. Continuing my development using Go and Swift as these are both languages I enjoy using and think are quite capable.
 2. Learn the basics of Rust and OCaml, I want to build a few projects using each to gain some more experience with them
 3. Continue to develop my C# and DotNet knowledge whilst on my internship
